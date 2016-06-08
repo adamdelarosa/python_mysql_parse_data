@@ -5,6 +5,7 @@ c = conn.cursor()
 
 with open("var/log/store.log", "r") as store_value:
     lines = store_value.readlines()
+print "Data moving to mysql . . ."
 
 for line in lines:
     data = line.split()
@@ -22,4 +23,7 @@ for line in lines:
     print "DATE_TIME: " + data_date_time + " PRODUCT: " + data_product + " KIND: " + data_kind + " VALUE: " + data_value
 
 conn.commit()
+print "Closing connection . . ."
 c.close()
+
+print "done."
