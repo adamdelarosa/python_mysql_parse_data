@@ -2,6 +2,8 @@
 
 import MySQLdb
 
+print 'Creating new tables . . . '
+
 # Open database connection
 db = MySQLdb.connect("localhost","root","root","PRO_STORE" )
 
