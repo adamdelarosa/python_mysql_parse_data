@@ -1,29 +1,23 @@
-import MySQLdb, csv, sys
+import MySQLdb
 
 conn = MySQLdb.connect("localhost","root","root","PRO_STORE" )
 c = conn.cursor()
-csv_data=file.read(file("var/log/store.log"))
 
-with open("var/log/store.log", "r") as sports:
-    lines = sports.readlines()
+with open("var/log/store.log", "r") as store_value:
+    lines = store_value.readlines()
 
 for line in lines:
     data = line.split()
 
+    #Data collect
     date_time = data[0]
     product = data[1]
     kind = data[2]
     value = data[3]
 
-    #data = csv_data.split()
-    #number = data[0]
-    #value = data[1]
     #c.execute("INSERT INTO STORE_DATA SET DATE_TIME = %s", row)
-    #print row
-    print date_time
-    print product
-    print kind
-    print value
+    #Print data store:
+    print "DATE_TIME: " + date_time + " PRODUCT: " + product + " KIND: " + kind + " VALUE: " + value
 
 conn.commit()
 c.close()
