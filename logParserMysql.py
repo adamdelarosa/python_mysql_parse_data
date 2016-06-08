@@ -20,5 +20,4 @@ sql = """CREATE TABLE EMPLOYEE (
 
 cursor.execute(sql)
 
-# disconnect from server
 db.close()
