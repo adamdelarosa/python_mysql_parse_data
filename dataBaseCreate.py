@@ -4,7 +4,7 @@ import MySQLdb
 
 print 'Creating new tables . . . '
 
-# Open database connection
+# db connection
 db = MySQLdb.connect("localhost","root","root","PRO_STORE" )
 
 # prepare a cursor object using cursor() method
@@ -13,7 +13,7 @@ cursor = db.cursor()
 # Drop table if it already exist using execute() method.
 cursor.execute("DROP TABLE IF EXISTS STORE_DATA")
 
-# Create table as per requirement
+# SQL syntax
 sql = """CREATE TABLE STORE_DATA (
          DATE_TIME  CHAR(20) NOT NULL,
          PRODUCT  CHAR(20),
@@ -21,5 +21,5 @@ sql = """CREATE TABLE STORE_DATA (
          VALUE CHAR(1))"""
 
 cursor.execute(sql)
-
+# Close connection
 db.close()
