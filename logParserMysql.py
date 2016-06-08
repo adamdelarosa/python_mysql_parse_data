@@ -9,15 +9,17 @@ with open("var/log/store.log", "r") as store_value:
 for line in lines:
     data = line.split()
 
-    #Data collect
-    date_time = data[0]
-    product = data[1]
-    kind = data[2]
-    value = data[3]
+    #Data collect:
+    data_date_time = data[0]
+    data_product = data[1]
+    data_kind = data[2]
+    data_value = data[3]
 
-    #c.execute("INSERT INTO STORE_DATA SET DATE_TIME = %s", row)
-    #Print data store:
-    print "DATE_TIME: " + date_time + " PRODUCT: " + product + " KIND: " + kind + " VALUE: " + value
+    #SQL:
+    c.execute("""INSERT INTO STORE_DATA (date_time, product, kind, value)
+        VALUES(%s, %s, %s, %s)""", (data_date_time, data_product, data_kind,data_value))
+
+    print "DATE_TIME: " + data_date_time + " PRODUCT: " + data_product + " KIND: " + data_kind + " VALUE: " + data_value
 
 conn.commit()
 c.close()
