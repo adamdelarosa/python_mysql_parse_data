@@ -1,26 +1,12 @@
-#!/usr/bin/python
+import MySQLdb, csv, sys
 
-import MySQLdb
-
-print 'Data parser . . . '
-
-# Open database connection
-db = MySQLdb.connect("localhost","root","root","PRO_STORE" )
-
-cursor = db.cursor()
-
-file = open('var/log/store.log','r')
-
-file_content = file.read()
-print file_content
-file.close()
-
-#query = "INSERT INTO STORE_DATA (DATE_TIME, PRODUCT, KIND, VALUE) VALUES ('%s','W','d','W')"
-for row in file_content:
+conn = MySQLdb.connect("localhost","root","root","PRO_STORE" )
+c = conn.cursor()
+csv_data=csv.reader(file("var/log/store.log"))
+for row in csv_data:
+    c.execute("UPDATE STORE_DATA SET DATE_TIME = %s", row)
     print row
-    query = ("""INSERT INTO STORE_DATA (DATE_TIME, PRODUCT, KIND, VALUE) VALUES (%s,%s,%s,%s),raw""")
+    #c.execute("INSERT INTO STORE_DATA (DATE_TIME, PRODUCT) VALUES ('%s', '%s')" % tuple(row))
 
-cursor.execute(query)
-
-db.commit()
-db.close()
+conn.commit()
+c.close()
