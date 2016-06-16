@@ -1,3 +1,3 @@
-# python_mysql_parse_data
+# Python - MySql parse data.
 
 Python logfile / textfile to mysql script.
